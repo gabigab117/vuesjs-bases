@@ -18,9 +18,9 @@
   
 <script setup>
 import {ref, watch} from 'vue';
-import { useCounter } from '@/composables/useCounter';
+import { useCounterStore } from '@/stores/counter';
 
-const counter = useCounter(); /* Version namespace de usecounter js */
+const counter = useCounterStore(); /* Version namespace de counter js */
 
 const posts = ref([
   {
@@ -39,7 +39,7 @@ const posts = ref([
 
 
 const color = ref("yellow");
-watch(counter.oddOrEven, (newCount) => { /* newCount sera soit pair ou impair et selon pair ou impair color change de couleur  */
+watch(() => counter.oddOrEven, (newCount) => { /* newCount sera soit pair ou impair et selon pair ou impair color change de couleur  */
   color.value = newCount == "pair" ? "red": "yellow"; /* si odd rouge sinon jaune */
 });
 </script>

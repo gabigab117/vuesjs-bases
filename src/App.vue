@@ -10,15 +10,9 @@
 
 
 <script setup>
-import { provide, reactive } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
 
-const userData = reactive({
-  name: "gab",
-  pseudo: "gabigab"
-});
 
-provide("gabShare", userData);
 </script>
 
 

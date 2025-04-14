@@ -16,6 +16,7 @@
 import { useRoute } from 'vue-router';
 import router from '@/router'
 import { useCounter } from '@vueuse/core';
+import { watch } from 'vue';
 
 const counter = useCounter();
 
@@ -32,4 +33,9 @@ function goHomeIn3Seconds() {
         router.push("/");
     }, 3000);
 }
+
+
+watch(() => counter.count.value, (newCount, oldCount) => {
+    if (newCount == 20) { alert("Résussi !")}
+  });
 </script>

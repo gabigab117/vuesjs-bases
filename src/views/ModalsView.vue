@@ -2,31 +2,24 @@
     <div class="modals">
         <h1>Modals</h1>
 
-        <button @click="showModal = true">Show modal</button>
-
-        <div>
-            <label>Show dark ?
-            <input type="checkbox" v-model="showDarkModal">
-            </label>
-        </div>
-
-        <component v-if="showModal" gab="Salut Gab" v-model="showModal" :is="showDarkModal ? ModalDark : Modal">
-            <p>Contenu du modal</p>
-
-        </component>
+        <button @click="modalStore.showModalFunc(true)">Show modal</button>
 
 
+        <Modal
+        gab="Salut Gab"
+        v-if="modalStore.showModal"
+         />
+         <!-- props gab de  Modal.vue -->
     </div>
-    <pre>{{ showModal }}</pre> <!--Permet d'afficher ma variable pour debug-->
+
+    <pre>{{ modalStore.showModal }}</pre>
 </template>
 
 <script setup>
-import {ref} from 'vue';
 import Modal from '@/component/Modal.vue';
-import ModalDark from '@/component/ModalDark.vue'
+import { useModalStore } from "@/stores/modal";
 
-const showDarkModal = ref(Modal);
-const showModal = ref(false);
+const modalStore = useModalStore();
 
 
 </script>

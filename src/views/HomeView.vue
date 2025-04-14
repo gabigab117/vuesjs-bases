@@ -3,14 +3,14 @@
 <h2 ref="h2Ref">{{ counterTitle }}</h2>
 
 <div class="home">
-  <button class="btn" @click="decreaseCounter(2, $event)">--</button>
-  <button class="btn" @click="decreaseCounter(1)">-</button>
-<span class="counter">{{ count2.number }}</span> <!-- span est inline -->
-<button class="btn" @click="increaseCounter(1)">+</button>
-<button class="btn" @click="increaseCounter(2)">++</button>
+  <button class="btn" @click="counter.decreaseCounter(2, $event)">--</button>
+  <button class="btn" @click="counter.decreaseCounter(1)">-</button>
+<span class="counter">{{ counter.count2.number }}</span> <!-- span est inline -->
+<button class="btn" @click="counter.increaseCounter(1)">+</button>
+<button class="btn" @click="counter.increaseCounter(2)">++</button>
 </div>
 
-<div class="oddEvent">{{ oddOrEven }}</div>
+<div class="oddEvent">{{ counter.oddOrEven }}</div>
 
 <button @click="traductInFrench">Traduct in french</button>
 
@@ -26,10 +26,10 @@
 <script setup>
 import { ref, onMounted, onBeforeMount } from "vue";
 import { vBucdany } from "@/directives/vBucdany";
-import { useCounter } from "@/composables/useCounter";
+import { useCounterStore } from "@/stores/counter";
 
 
-const { count2, oddOrEven, increaseCounter, decreaseCounter } = useCounter();
+const counter = useCounterStore();
 
 
 const h2Ref = ref(null);
@@ -47,7 +47,7 @@ function traductInFrench() {
 
 const counterTitle = ref("Home 2");
 
-const counter = ref(0);
+/*const counter = ref(0); */
 
 
 

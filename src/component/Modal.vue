@@ -1,39 +1,30 @@
 <template>
     <Teleport to="#modals-container">
         <div class="modal">
-            <h2>{{ props.gab }}</h2>
             <slot />
 
-            Salut {{ userName.pseudo }}
+            Salut {{ store.userData.pseudo }}
 
-            <button @click="handleButtonClick">Hide Modal</button>
+            <button @click="modalStore.showModalFunc(false)">Hide Modal</button>
         </div>
     </Teleport>
 </template>
 
 <script setup>
-import { inject } from 'vue';
+import { userStore } from "@/stores/user";
+import { useModalStore } from "@/stores/modal";
 
+const modalStore = useModalStore();
+const store = userStore();
 
-const userName = inject("gabShare");
 
 
 const props = defineProps({
-    modelValue: {
-        type: Boolean,
-        default: false
-    },
     gab: {
         type: String,
-        default: "Default title"
+        default: "Defaut"
     }
 });
-
-const emit = defineEmits(["update:modelValue"])
-
-const handleButtonClick = () => {
-    emit("update:modelValue", false);
-};
 
 </script>
 
